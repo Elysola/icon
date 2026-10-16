@@ -1,7 +1,20 @@
 {
   "projects": {
-    "mailer": {
+    "elysola": {
       "assets": {
+        "icon-text": {
+          "svg": "icon-text.svg",
+          "png": [
+            "icon-text-16.png",
+            "icon-text-32.png",
+            "icon-text-48.png",
+            "icon-text-64.png",
+            "icon-text-96.png",
+            "icon-text-128.png",
+            "icon-text-256.png",
+            "icon-text-512.png"
+          ]
+        },
         "icon": {
           "svg": "icon.svg",
           "png": [
@@ -17,34 +30,8 @@
         }
       }
     },
-    "recloud": {
+    "mailer": {
       "assets": {
-        "icon-text-studio": {
-          "svg": "icon-text-studio.svg",
-          "png": [
-            "icon-text-studio-16.png",
-            "icon-text-studio-32.png",
-            "icon-text-studio-48.png",
-            "icon-text-studio-64.png",
-            "icon-text-studio-96.png",
-            "icon-text-studio-128.png",
-            "icon-text-studio-256.png",
-            "icon-text-studio-512.png"
-          ]
-        },
-        "icon-text": {
-          "svg": "icon-text.svg",
-          "png": [
-            "icon-text-16.png",
-            "icon-text-32.png",
-            "icon-text-48.png",
-            "icon-text-64.png",
-            "icon-text-96.png",
-            "icon-text-128.png",
-            "icon-text-256.png",
-            "icon-text-512.png"
-          ]
-        },
         "icon": {
           "svg": "icon.svg",
           "png": [

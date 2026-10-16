@@ -1,7 +1,7 @@
 [project]
-name = "recloud-icon"
+name = "elysola-icon"
 version = "0.1.0"
-description = "ReCloud 图标 SVG 与多尺寸 PNG 构建"
+description = "Elysola 图标 SVG 与多尺寸 PNG 构建"
 requires-python = ">=3.12"
 dependencies = [
   "cairosvg",

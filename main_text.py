@@ -1,7 +1,7 @@
 import glob
 import subprocess
 
-ICON_DIR = "projects/recloud"
+ICON_DIR = "projects/elysola"
 ICON_SVG = f"{ICON_DIR}/icon.svg"
 FONT_CANDIDATES = glob.glob("/nix/store/*dejavu-fonts*/share/fonts/truetype/DejaVuSans-Bold.ttf")
 FONT = FONT_CANDIDATES[0] if FONT_CANDIDATES else "DejaVu Sans"
@@ -65,12 +65,15 @@ def build_svg(word, tw, th, path):
 </g>
 </svg>
 '''
-    with open(path, "w") as f:
-        f.write(svg)
+    try:
+        with open(path, "w") as f:
+            f.write(svg)
+    except OSError as exc:
+        raise RuntimeError(f"Failed to write generated SVG: {path}") from exc
 
 
 def main():
-    for word, prefix in [("ReCloud", "icon-text"), ("ReCloud Studio", "icon-text-studio")]:
+    for word, prefix in [("Elysola", "icon-text")]:
         tw, th = measure(word)
         build_svg(word, tw, th, f"{ICON_DIR}/{prefix}.svg")
         print(f"{prefix}: text {tw}x{th}")

@@ -1,5 +1,5 @@
 {
-  description = "ReCloud 图标构建环境";
+  description = "Elysola 图标构建环境";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
