@@ -2,32 +2,6 @@
   "projects": {
     "elysola": {
       "assets": {
-        "icon-black": {
-          "svg": "icon-black.svg",
-          "png": [
-            "icon-black-16.png",
-            "icon-black-32.png",
-            "icon-black-48.png",
-            "icon-black-64.png",
-            "icon-black-96.png",
-            "icon-black-128.png",
-            "icon-black-256.png",
-            "icon-black-512.png"
-          ]
-        },
-        "icon-small": {
-          "svg": "icon-small.svg",
-          "png": [
-            "icon-small-16.png",
-            "icon-small-32.png",
-            "icon-small-48.png",
-            "icon-small-64.png",
-            "icon-small-96.png",
-            "icon-small-128.png",
-            "icon-small-256.png",
-            "icon-small-512.png"
-          ]
-        },
         "icon-text": {
           "svg": "icon-text.svg",
           "png": [
@@ -39,19 +13,6 @@
             "icon-text-128.png",
             "icon-text-256.png",
             "icon-text-512.png"
-          ]
-        },
-        "icon-white": {
-          "svg": "icon-white.svg",
-          "png": [
-            "icon-white-16.png",
-            "icon-white-32.png",
-            "icon-white-48.png",
-            "icon-white-64.png",
-            "icon-white-96.png",
-            "icon-white-128.png",
-            "icon-white-256.png",
-            "icon-white-512.png"
           ]
         },
         "icon": {
