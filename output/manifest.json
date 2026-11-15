@@ -2,6 +2,19 @@
   "projects": {
     "elysola": {
       "assets": {
+        "icon-decorative": {
+          "svg": "icon-decorative.svg",
+          "png": [
+            "icon-decorative-16.png",
+            "icon-decorative-32.png",
+            "icon-decorative-48.png",
+            "icon-decorative-64.png",
+            "icon-decorative-96.png",
+            "icon-decorative-128.png",
+            "icon-decorative-256.png",
+            "icon-decorative-512.png"
+          ]
+        },
         "icon-text": {
           "svg": "icon-text.svg",
           "png": [
