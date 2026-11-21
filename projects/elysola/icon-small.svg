@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Elysola">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6EA8FE"/>
+      <stop offset="0.48" stop-color="#4E82DF"/>
+      <stop offset="1" stop-color="#2F66C4"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+  <g fill="#fff">
+    <path d="M9 21.5A2.5 2.5 0 0 1 11.5 19H27v6H15v4h10v6H15v4h12v6H11.5A2.5 2.5 0 0 1 9 42.5Z"/>
+    <path d="M52.5 23.5 48 27.8A10 10 0 0 0 41.2 25c-2.3 0-3.8.7-3.8 2 0 1.2 1.2 1.7 5.1 2.6 7.2 1.6 10.7 3.8 10.7 8.3 0 5.1-4.6 8.2-11.4 8.2-5.4 0-9.5-1.7-12.7-5.2l4.5-4.5a11.5 11.5 0 0 0 8.3 3.6c2.8 0 4.4-.8 4.4-2.2 0-1.3-1.4-1.8-5.3-2.7-6.9-1.6-10.4-3.8-10.4-8 0-4.9 4.3-8.1 10.8-8.1 4.6 0 8.3 1.5 11.1 4.5Z"/>
+    <path d="M9 39.5A61 61 0 0 1 55 39.5 80 80 0 0 0 9 39.5Z"/>
+  </g>
+</svg>

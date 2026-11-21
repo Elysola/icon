@@ -19,16 +19,19 @@
       "project": "elysola",
       "name": "icon",
       "source": "projects/elysola/icon.svg",
+      "sources": [{"source": "projects/elysola/icon-small.svg", "maxWidth": 32}],
       "sizeMode": "square",
-      "checks": {
-        "width": 512,
-        "transparentCorners": true,
-        "alphaSamples": [{"x": 192, "y": 250, "value": 0}],
-        "alphaSegments": [{
-          "axis": "y", "position": 192, "start": 230, "end": 269,
-          "threshold": 128, "segments": [[234, 246], [255, 264]], "tolerance": 1
-        }]
-      }
+      "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "elysola", "name": "icon-small",
+      "source": "projects/elysola/icon-small.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "elysola", "name": "icon-mono",
+      "source": "projects/elysola/icon-mono.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
     },
     {
       "project": "elysola", "name": "icon-decorative",
