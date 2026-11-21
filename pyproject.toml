@@ -3,6 +3,4 @@ name = "elysola-icon"
 version = "0.1.0"
 description = "Elysola 图标 SVG 与多尺寸 PNG 构建"
 requires-python = ">=3.12"
-dependencies = [
-  "cairosvg",
-]
+dependencies = []

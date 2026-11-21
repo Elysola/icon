@@ -1,0 +1,1396 @@
+{
+ "name": "elysola",
+ "version": "1.2",
+ "description": "Elysola icon single source of truth. Every arc is stored as from/through/to; center/R/thetaDeg are derived by the three-point circle rule and kept for annotation only. Generators must draw from from/through/to. v1.2: E bars start at spine.x + corner radius (tl) so the bars no longer paint over the spine's top-left / bottom-left rounded corners; the spine alone supplies the bar segment left of that inset, so bar tips (chordEnd+endR) and combined widths are unchanged.",
+ "params": {
+  "t": 18,
+  "r": 9,
+  "r0": 6,
+  "g": 6,
+  "R_sun": 38
+ },
+ "rounding": "coordinates stored at 2 decimals; center/R/thetaDeg at 1 decimal (display/derivation record)",
+ "variants": {
+  "standard": {
+   "frame": {
+    "width": 280,
+    "height": 140
+   },
+   "mapTo512": {
+    "translate": [
+     32,
+     136.8
+    ],
+    "scale": 1.6
+   },
+   "bbox": {
+    "x": [
+     24,
+     256
+    ],
+    "y": [
+     22,
+     128
+    ]
+   },
+   "modules": [
+    {
+     "id": "E",
+     "type": "e-letter",
+     "spine": {
+      "x": 42,
+      "y": 22,
+      "w": 26,
+      "h": 96,
+      "cornerRadii": {
+       "tl": 6,
+       "tr": 0,
+       "br": 0,
+       "bl": 6
+      }
+     },
+     "bars": [
+      {
+       "x": 48,
+       "y": 22,
+       "chordEnd": 124,
+       "h": 18,
+       "endR": 9
+      },
+      {
+       "x": 48,
+       "y": 61,
+       "chordEnd": 114,
+       "h": 18,
+       "endR": 9
+      },
+      {
+       "x": 48,
+       "y": 100,
+       "chordEnd": 124,
+       "h": 18,
+       "endR": 9
+      }
+     ],
+     "barInsetNote": "bars[].x = spine.x + cornerRadii.tl; bars must not start at spine.x, otherwise their square left corners fill the spine's rounded tl/bl corners. Combined E width = (chordEnd+endR) - spine.x."
+    },
+    {
+     "id": "S",
+     "type": "outline",
+     "fillRule": "nonzero",
+     "start": [
+      228.0,
+      41.0
+     ],
+     "elements": [
+      {
+       "type": "line",
+       "from": [
+        228,
+        41
+       ],
+       "to": [
+        216,
+        52
+       ]
+      },
+      {
+       "type": "arc",
+       "from": [
+        216.0,
+        52.0
+       ],
+       "through": [
+        210.03,
+        46.59
+       ],
+       "to": [
+        202.75,
+        42.5
+       ],
+       "center": [
+        188.5,
+        76.4
+       ],
+       "R": 36.7,
+       "thetaDeg": 25.6
+      },
+      {
+       "type": "arc",
+       "from": [
+        202.75,
+        42.5
+       ],
+       "through": [
+        194.34,
+        39.91
+       ],
+       "to": [
+        185.0,
+        39.0
+       ],
+       "center": [
+        185.4,
+        84.0
+       ],
+       "R": 45.0,
+       "thetaDeg": 23.2
+      },
+      {
+       "type": "arc",
+       "from": [
+        185.0,
+        39.0
+       ],
+       "through": [
+        175.5,
+        39.73
+       ],
+       "to": [
+        168.25,
+        41.88
+       ],
+       "center": [
+        183.4,
+        79.7
+       ],
+       "R": 40.8,
+       "thetaDeg": 24.1
+      },
+      {
+       "type": "arc",
+       "from": [
+        168.25,
+        41.88
+       ],
+       "through": [
+        163.62,
+        45.33
+       ],
+       "to": [
+        162.0,
+        50.0
+       ],
+       "center": [
+        171.1,
+        50.6
+       ],
+       "R": 9.1,
+       "thetaDeg": 68.2
+      },
+      {
+       "type": "arc",
+       "from": [
+        162.0,
+        50.0
+       ],
+       "through": [
+        163.38,
+        54.72
+       ],
+       "to": [
+        167.75,
+        58.5
+       ],
+       "center": [
+        171.4,
+        49.8
+       ],
+       "R": 9.4,
+       "thetaDeg": 65.8
+      },
+      {
+       "type": "arc",
+       "from": [
+        167.75,
+        58.5
+       ],
+       "through": [
+        175.5,
+        61.53
+       ],
+       "to": [
+        187.0,
+        64.0
+       ],
+       "center": [
+        194.3,
+        2.1
+       ],
+       "R": 62.3,
+       "thetaDeg": 18.5
+      },
+      {
+       "type": "arc",
+       "from": [
+        187.0,
+        64.0
+       ],
+       "through": [
+        205.0,
+        67.72
+       ],
+       "to": [
+        219.25,
+        73.5
+       ],
+       "center": [
+        177.3,
+        156.5
+       ],
+       "R": 93.0,
+       "thetaDeg": 20.8
+      },
+      {
+       "type": "arc",
+       "from": [
+        219.25,
+        73.5
+       ],
+       "through": [
+        228.62,
+        82.28
+       ],
+       "to": [
+        232.0,
+        95.0
+       ],
+       "center": [
+        208.4,
+        94.4
+       ],
+       "R": 23.6,
+       "thetaDeg": 64.0
+      },
+      {
+       "type": "arc",
+       "from": [
+        232.0,
+        95.0
+       ],
+       "through": [
+        218.25,
+        118.25
+       ],
+       "to": [
+        182.0,
+        128.0
+       ],
+       "center": [
+        190.1,
+        85.9
+       ],
+       "R": 42.9,
+       "thetaDeg": 88.7
+      },
+      {
+       "type": "arc",
+       "from": [
+        182.0,
+        128.0
+       ],
+       "through": [
+        151.75,
+        122.88
+       ],
+       "to": [
+        129.0,
+        108.0
+       ],
+       "center": [
+        178.4,
+        57.2
+       ],
+       "R": 70.9,
+       "thetaDeg": 47.1
+      },
+      {
+       "type": "line",
+       "from": [
+        129,
+        108
+       ],
+       "to": [
+        142,
+        94
+       ]
+      },
+      {
+       "type": "arc",
+       "from": [
+        142.0,
+        94.0
+       ],
+       "through": [
+        149.66,
+        100.88
+       ],
+       "to": [
+        159.0,
+        106.25
+       ],
+       "center": [
+        179.3,
+        60.2
+       ],
+       "R": 50.3,
+       "thetaDeg": 24.0
+      },
+      {
+       "type": "arc",
+       "from": [
+        159.0,
+        106.25
+       ],
+       "through": [
+        169.84,
+        109.75
+       ],
+       "to": [
+        182.0,
+        111.0
+       ],
+       "center": [
+        181.7,
+        54.6
+       ],
+       "R": 56.4,
+       "thetaDeg": 24.0
+      },
+      {
+       "type": "arc",
+       "from": [
+        182.0,
+        111.0
+       ],
+       "through": [
+        193.55,
+        109.94
+       ],
+       "to": [
+        202.38,
+        107.0
+       ],
+       "center": [
+        183.6,
+        65.4
+       ],
+       "R": 45.6,
+       "thetaDeg": 26.3
+      },
+      {
+       "type": "arc",
+       "from": [
+        202.38,
+        107.0
+       ],
+       "through": [
+        208.02,
+        102.56
+       ],
+       "to": [
+        210.0,
+        97.0
+       ],
+       "center": [
+        198.2,
+        95.9
+       ],
+       "R": 11.8,
+       "thetaDeg": 64.3
+      },
+      {
+       "type": "arc",
+       "from": [
+        210.0,
+        97.0
+       ],
+       "through": [
+        208.47,
+        92.12
+       ],
+       "to": [
+        203.75,
+        88.0
+       ],
+       "center": [
+        199.5,
+        97.6
+       ],
+       "R": 10.5,
+       "thetaDeg": 62.8
+      },
+      {
+       "type": "arc",
+       "from": [
+        203.75,
+        88.0
+       ],
+       "through": [
+        195.66,
+        84.62
+       ],
+       "to": [
+        184.0,
+        82.0
+       ],
+       "center": [
+        176.8,
+        141.3
+       ],
+       "R": 59.8,
+       "thetaDeg": 19.9
+      },
+      {
+       "type": "arc",
+       "from": [
+        184.0,
+        82.0
+       ],
+       "through": [
+        166.16,
+        78.45
+       ],
+       "to": [
+        152.25,
+        73.12
+       ],
+       "center": [
+        194.0,
+        -15.1
+       ],
+       "R": 97.6,
+       "thetaDeg": 19.4
+      },
+      {
+       "type": "arc",
+       "from": [
+        152.25,
+        73.12
+       ],
+       "through": [
+        143.22,
+        64.98
+       ],
+       "to": [
+        140.0,
+        53.0
+       ],
+       "center": [
+        161.7,
+        53.6
+       ],
+       "R": 21.7,
+       "thetaDeg": 65.9
+      },
+      {
+       "type": "arc",
+       "from": [
+        140.0,
+        53.0
+       ],
+       "through": [
+        151.5,
+        31.12
+       ],
+       "to": [
+        184.0,
+        22.0
+       ],
+       "center": [
+        176.7,
+        58.3
+       ],
+       "R": 37.0,
+       "thetaDeg": 93.2
+      },
+      {
+       "type": "arc",
+       "from": [
+        184.0,
+        22.0
+       ],
+       "through": [
+        209.38,
+        27.0
+       ],
+       "to": [
+        228.0,
+        41.0
+       ],
+       "center": [
+        186.3,
+        77.0
+       ],
+       "R": 55.1,
+       "thetaDeg": 51.6
+      }
+     ]
+    },
+    {
+     "id": "cutout",
+     "type": "outline",
+     "role": "cutout",
+     "note": "Recomputed from the original mask: Q lens (tips (24,96)/(256,96), upper apex (140,69), lower apex (140,73.5)) dilated by the stroke half-width 3 (stroke-width 6). Each boundary is the three-point arc through the offset curve's two endpoints and apex; the two boundaries are joined at the tips by straight segments. The cutout spans y 66-76.5 at centre; the visible white band against the foreground horizon (top y=71) is y 66-71, height 5. Drawn with destination-out (Canvas) / background-colour overlay (CSS/SVG). Order: ES -> cutout -> horizon",
+     "elements": [
+      {
+       "type": "arc",
+       "from": [
+        22.73,
+        93.28
+       ],
+       "through": [
+        140,
+        66
+       ],
+       "to": [
+        257.27,
+        93.28
+       ],
+       "center": [
+        140.0,
+        331.7
+       ],
+       "R": 265.7,
+       "thetaDeg": 52.4
+      },
+      {
+       "type": "line",
+       "from": [
+        257.27,
+        93.28
+       ],
+       "to": [
+        254.91,
+        98.8
+       ]
+      },
+      {
+       "type": "arc",
+       "from": [
+        254.91,
+        98.8
+       ],
+       "through": [
+        140,
+        76.5
+       ],
+       "to": [
+        25.09,
+        98.8
+       ],
+       "center": [
+        140.0,
+        383.8
+       ],
+       "R": 307.3,
+       "thetaDeg": 43.9
+      },
+      {
+       "type": "line",
+       "from": [
+        25.09,
+        98.8
+       ],
+       "to": [
+        22.73,
+        93.28
+       ]
+      }
+     ],
+     "spec": {
+      "source": "original mask path M 24 96 Q 140 42 256 96 Q 140 51 24 96 Z, fill+stroke, stroke-width 6",
+      "maskLens": {
+       "tips": [
+        [
+         24,
+         96
+        ],
+        [
+         256,
+         96
+        ]
+       ],
+       "upperApex": [
+        140,
+        69
+       ],
+       "lowerApex": [
+        140,
+        73.5
+       ]
+      },
+      "dilation": 3,
+      "top": {
+       "from": [
+        22.73,
+        93.28
+       ],
+       "through": [
+        140,
+        66
+       ],
+       "to": [
+        257.27,
+        93.28
+       ],
+       "R": 265.7,
+       "center": [
+        140,
+        331.7
+       ],
+       "thetaDeg": 52.4
+      },
+      "bottom": {
+       "from": [
+        254.91,
+        98.8
+       ],
+       "through": [
+        140,
+        76.5
+       ],
+       "to": [
+        25.09,
+        98.8
+       ],
+       "R": 307.3,
+       "center": [
+        140,
+        383.8
+       ],
+       "thetaDeg": 43.9
+      },
+      "cutoutSpanCentre": [
+       66,
+       76.5
+      ],
+      "visibleWhiteBandCentre": [
+       66,
+       71
+      ]
+     }
+    },
+    {
+     "id": "horizon",
+     "type": "outline",
+     "role": "foreground",
+     "elements": [
+      {
+       "type": "arc",
+       "from": [
+        24,
+        98
+       ],
+       "through": [
+        140,
+        71
+       ],
+       "to": [
+        256,
+        98
+       ],
+       "center": [
+        140.0,
+        333.7
+       ],
+       "R": 262.7,
+       "thetaDeg": 52.4
+      },
+      {
+       "type": "arc",
+       "from": [
+        256,
+        98
+       ],
+       "through": [
+        140,
+        77.5
+       ],
+       "to": [
+        24,
+        98
+       ],
+       "center": [
+        140.0,
+        415.9
+       ],
+       "R": 338.4,
+       "thetaDeg": 40.1
+      }
+     ],
+     "spec": {
+      "chord": 232,
+      "y": 98,
+      "top": {
+       "h": 27,
+       "R": 262.7,
+       "center": [
+        140,
+        333.7
+       ]
+      },
+      "bottom": {
+       "h": 20.5,
+       "R": 338.4,
+       "center": [
+        140,
+        415.9
+       ]
+      }
+     }
+    }
+   ]
+  },
+  "decorative": {
+   "frame": {
+    "width": 360,
+    "height": 140
+   },
+   "mapTo512": {
+    "translate": [
+     36.3,
+     169.3
+    ],
+    "scale": 1.22
+   },
+   "bbox": {
+    "x": [
+     26,
+     328
+    ],
+    "y": [
+     24,
+     128
+    ]
+   },
+   "modules": [
+    {
+     "id": "E",
+     "type": "e-letter",
+     "spine": {
+      "x": 26,
+      "y": 24,
+      "w": 26,
+      "h": 92,
+      "cornerRadii": {
+       "tl": 6,
+       "tr": 0,
+       "br": 0,
+       "bl": 6
+      }
+     },
+     "bars": [
+      {
+       "x": 32,
+       "y": 24,
+       "chordEnd": 104,
+       "h": 18,
+       "endR": 9
+      },
+      {
+       "x": 32,
+       "y": 62,
+       "chordEnd": 86,
+       "h": 16,
+       "endR": 8
+      },
+      {
+       "x": 32,
+       "y": 98,
+       "chordEnd": 104,
+       "h": 18,
+       "endR": 9
+      }
+     ],
+     "barInsetNote": "bars[].x = spine.x + cornerRadii.tl; bars must not start at spine.x, otherwise their square left corners fill the spine's rounded tl/bl corners. Combined E width = (chordEnd+endR) - spine.x."
+    },
+    {
+     "id": "sun",
+     "type": "outline",
+     "elements": [
+      {
+       "type": "arc",
+       "from": [
+        142,
+        66
+       ],
+       "through": [
+        180,
+        28
+       ],
+       "to": [
+        218,
+        66
+       ],
+       "center": [
+        180.0,
+        66.0
+       ],
+       "R": 38.0,
+       "thetaDeg": 180.0
+      },
+      {
+       "type": "arc",
+       "from": [
+        218,
+        66
+       ],
+       "through": [
+        180,
+        61
+       ],
+       "to": [
+        142,
+        66
+       ],
+       "center": [
+        180.0,
+        207.9
+       ],
+       "R": 146.9,
+       "thetaDeg": 30.0
+      }
+     ],
+     "spec": {
+      "center": [
+       180,
+       66
+      ],
+      "R": 38,
+      "cut": {
+       "h": 5,
+       "R": 146.9,
+       "center": [
+        180,
+        207.9
+       ]
+      }
+     }
+    },
+    {
+     "id": "horizon",
+     "type": "outline",
+     "role": "foreground",
+     "elements": [
+      {
+       "type": "arc",
+       "from": [
+        86,
+        88
+       ],
+       "through": [
+        180,
+        67
+       ],
+       "to": [
+        274,
+        88
+       ],
+       "center": [
+        180.0,
+        287.9
+       ],
+       "R": 220.9,
+       "thetaDeg": 50.4
+      },
+      {
+       "type": "arc",
+       "from": [
+        274,
+        88
+       ],
+       "through": [
+        180,
+        76
+       ],
+       "to": [
+        86,
+        88
+       ],
+       "center": [
+        180.0,
+        450.2
+       ],
+       "R": 374.2,
+       "thetaDeg": 29.1
+      }
+     ],
+     "spec": {
+      "chord": 188,
+      "y": 88,
+      "top": {
+       "h": 21,
+       "R": 220.9,
+       "center": [
+        180,
+        287.9
+       ]
+      },
+      "bottom": {
+       "h": 12,
+       "R": 374.2,
+       "center": [
+        180,
+        450.2
+       ]
+      }
+     }
+    },
+    {
+     "id": "S",
+     "type": "outline",
+     "fillRule": "nonzero",
+     "start": [
+      322.0,
+      43.0
+     ],
+     "elements": [
+      {
+       "type": "line",
+       "from": [
+        322,
+        43
+       ],
+       "to": [
+        311,
+        54
+       ]
+      },
+      {
+       "type": "arc",
+       "from": [
+        311.0,
+        54.0
+       ],
+       "through": [
+        305.19,
+        48.75
+       ],
+       "to": [
+        298.25,
+        45.0
+       ],
+       "center": [
+        286.2,
+        75.7
+       ],
+       "R": 33.0,
+       "thetaDeg": 27.4
+      },
+      {
+       "type": "arc",
+       "from": [
+        298.25,
+        45.0
+       ],
+       "through": [
+        290.19,
+        42.75
+       ],
+       "to": [
+        281.0,
+        42.0
+       ],
+       "center": [
+        281.9,
+        88.2
+       ],
+       "R": 46.2,
+       "thetaDeg": 21.9
+      },
+      {
+       "type": "arc",
+       "from": [
+        281.0,
+        42.0
+       ],
+       "through": [
+        272.23,
+        42.73
+       ],
+       "to": [
+        265.62,
+        44.88
+       ],
+       "center": [
+        279.5,
+        76.3
+       ],
+       "R": 34.4,
+       "thetaDeg": 26.3
+      },
+      {
+       "type": "arc",
+       "from": [
+        265.62,
+        44.88
+       ],
+       "through": [
+        261.45,
+        48.33
+       ],
+       "to": [
+        260.0,
+        53.0
+       ],
+       "center": [
+        269.0,
+        53.3
+       ],
+       "R": 9.0,
+       "thetaDeg": 66.2
+      },
+      {
+       "type": "arc",
+       "from": [
+        260.0,
+        53.0
+       ],
+       "through": [
+        261.36,
+        57.14
+       ],
+       "to": [
+        265.62,
+        60.62
+       ],
+       "center": [
+        268.8,
+        52.4
+       ],
+       "R": 8.8,
+       "thetaDeg": 65.2
+      },
+      {
+       "type": "arc",
+       "from": [
+        265.62,
+        60.62
+       ],
+       "through": [
+        273.08,
+        63.55
+       ],
+       "to": [
+        284.0,
+        66.0
+       ],
+       "center": [
+        292.3,
+        3.6
+       ],
+       "R": 62.9,
+       "thetaDeg": 17.5
+      },
+      {
+       "type": "arc",
+       "from": [
+        284.0,
+        66.0
+       ],
+       "through": [
+        301.42,
+        69.7
+       ],
+       "to": [
+        315.38,
+        75.38
+       ],
+       "center": [
+        273.4,
+        158.6
+       ],
+       "R": 93.2,
+       "thetaDeg": 20.2
+      },
+      {
+       "type": "arc",
+       "from": [
+        315.38,
+        75.38
+       ],
+       "through": [
+        324.64,
+        83.86
+       ],
+       "to": [
+        328.0,
+        96.0
+       ],
+       "center": [
+        305.2,
+        95.8
+       ],
+       "R": 22.8,
+       "thetaDeg": 64.1
+      },
+      {
+       "type": "arc",
+       "from": [
+        328.0,
+        96.0
+       ],
+       "through": [
+        313.88,
+        118.75
+       ],
+       "to": [
+        278.0,
+        128.0
+       ],
+       "center": [
+        286.3,
+        85.8
+       ],
+       "R": 43.0,
+       "thetaDeg": 87.4
+      },
+      {
+       "type": "arc",
+       "from": [
+        278.0,
+        128.0
+       ],
+       "through": [
+        249.12,
+        123.0
+       ],
+       "to": [
+        227.0,
+        109.0
+       ],
+       "center": [
+        275.4,
+        56.9
+       ],
+       "R": 71.1,
+       "thetaDeg": 45.0
+      },
+      {
+       "type": "line",
+       "from": [
+        227,
+        109
+       ],
+       "to": [
+        240,
+        95
+       ]
+      },
+      {
+       "type": "arc",
+       "from": [
+        240.0,
+        95.0
+       ],
+       "through": [
+        247.48,
+        101.72
+       ],
+       "to": [
+        256.38,
+        106.75
+       ],
+       "center": [
+        274.9,
+        63.7
+       ],
+       "R": 46.9,
+       "thetaDeg": 24.8
+      },
+      {
+       "type": "arc",
+       "from": [
+        256.38,
+        106.75
+       ],
+       "through": [
+        266.58,
+        109.91
+       ],
+       "to": [
+        278.0,
+        111.0
+       ],
+       "center": [
+        277.4,
+        56.8
+       ],
+       "R": 54.3,
+       "thetaDeg": 23.4
+      },
+      {
+       "type": "arc",
+       "from": [
+        278.0,
+        111.0
+       ],
+       "through": [
+        289.55,
+        110.09
+       ],
+       "to": [
+        298.38,
+        107.5
+       ],
+       "center": [
+        279.9,
+        60.8
+       ],
+       "R": 50.2,
+       "thetaDeg": 23.8
+      },
+      {
+       "type": "arc",
+       "from": [
+        298.38,
+        107.5
+       ],
+       "through": [
+        304.02,
+        103.41
+       ],
+       "to": [
+        306.0,
+        98.0
+       ],
+       "center": [
+        295.1,
+        97.1
+       ],
+       "R": 10.9,
+       "thetaDeg": 67.7
+      },
+      {
+       "type": "arc",
+       "from": [
+        306.0,
+        98.0
+       ],
+       "through": [
+        304.47,
+        93.28
+       ],
+       "to": [
+        299.75,
+        89.5
+       ],
+       "center": [
+        296.4,
+        98.5
+       ],
+       "R": 9.6,
+       "thetaDeg": 66.6
+      },
+      {
+       "type": "arc",
+       "from": [
+        299.75,
+        89.5
+       ],
+       "through": [
+        291.66,
+        86.47
+       ],
+       "to": [
+        280.0,
+        84.0
+       ],
+       "center": [
+        271.6,
+        152.3
+       ],
+       "R": 68.8,
+       "thetaDeg": 17.1
+      },
+      {
+       "type": "arc",
+       "from": [
+        280.0,
+        84.0
+       ],
+       "through": [
+        263.31,
+        80.47
+       ],
+       "to": [
+        250.0,
+        75.25
+       ],
+       "center": [
+        291.3,
+        -10.4
+       ],
+       "R": 95.1,
+       "thetaDeg": 18.9
+      },
+      {
+       "type": "arc",
+       "from": [
+        250.0,
+        75.25
+       ],
+       "through": [
+        241.19,
+        67.41
+       ],
+       "to": [
+        238.0,
+        56.0
+       ],
+       "center": [
+        259.0,
+        56.3
+       ],
+       "R": 21.0,
+       "thetaDeg": 65.4
+      },
+      {
+       "type": "arc",
+       "from": [
+        238.0,
+        56.0
+       ],
+       "through": [
+        249.25,
+        35.0
+       ],
+       "to": [
+        280.0,
+        26.0
+       ],
+       "center": [
+        273.7,
+        61.6
+       ],
+       "R": 36.2,
+       "thetaDeg": 91.0
+      },
+      {
+       "type": "arc",
+       "from": [
+        280.0,
+        26.0
+       ],
+       "through": [
+        303.62,
+        30.0
+       ],
+       "to": [
+        322.0,
+        43.0
+       ],
+       "center": [
+        283.3,
+        78.2
+       ],
+       "R": 52.3,
+       "thetaDeg": 51.3
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

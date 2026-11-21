@@ -1,0 +1,47 @@
+{
+  "sizes": [16, 32, 48, 64, 96, 128, 256, 512],
+  "assets": [
+    {
+      "project": "elysola",
+      "name": "icon",
+      "source": "projects/elysola/icon.svg",
+      "truth": "geometry",
+      "sizeMode": "square",
+      "checkCorners": true,
+      "checkCutout": true
+    },
+    {
+      "project": "elysola",
+      "name": "icon-decorative",
+      "source": "projects/elysola/icon-decorative.svg",
+      "truth": "geometry",
+      "sizeMode": "square",
+      "checkCorners": true
+    },
+    {
+      "project": "elysola",
+      "name": "icon-text",
+      "source": "projects/elysola/icon-text.svg",
+      "truth": "derived-text",
+      "sizeMode": "by-width",
+      "checkCorners": true,
+      "font": "DejaVuSans-Bold.ttf"
+    },
+    {
+      "project": "mailer",
+      "name": "icon",
+      "source": "projects/mailer/icon.svg",
+      "truth": "svg",
+      "sizeMode": "square",
+      "checkCorners": true
+    },
+    {
+      "project": "webhooker",
+      "name": "icon",
+      "source": "projects/webhooker/icon.svg",
+      "truth": "svg",
+      "sizeMode": "square",
+      "checkCorners": true
+    }
+  ]
+}

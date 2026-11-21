@@ -4,32 +4,53 @@
 
 ## 目录结构
 
-- `projects/<project>/`：各项目图标源文件（`*.svg`，Elysola 另含原始位图 `icon.png`）。
-- `output/<project>/`：生成的多尺寸 PNG + SVG 副本，被展示站 `scripts/sync.mjs` 拉取。
-- `output/manifest.json`：资产清单元数据（项目 → 资产 → 文件列表）。
-- `main.py`：遍历 `projects/`，把每个 `*.svg` 导出为 `output/<project>/<name>-{16,32,48,64,96,128,256,512}.png`，并复制 SVG、生成 `manifest.json`。
-- `main_text.py`：生成 Elysola 横排字标 SVG（`projects/elysola/icon-text*.svg`），ImageMagick + DejaVuSans-Bold。
+- `geometry-kit/`：Elysola 几何唯一真值（`icon-geometry.json`）及生成器；普通版与装饰版 SVG 不得手改。
+- `projects/<project>/`：手写 SVG 或由统一构建生成的 SVG；Elysola 另含原始位图 `icon.png`。
+- `icons.json`：全部资产的注册表、尺寸模式与专属断言开关。
+- `output/<project>/`：由统一流水线生成的多尺寸 PNG + SVG 副本，被展示站 `scripts/sync.mjs` 拉取。
+- `output/manifest.json`：资产清单元数据（项目 → 资产 → 文件列表）；overlay 版不进入 manifest。
+- `main.py`：先生成几何 SVG 与横排字标，再只用 `rsvg-convert` 按宽度导出 PNG，并写入 manifest。
+- `validate.py`：检查字体锁定、生成物一致性、透明镂空、PNG 尺寸及 manifest。
 
 ## 已有项目
 
-- `projects/elysola/`：Elysola 主图标，potrace 提取轮廓 + 手动垂直蓝渐变（`linearGradient id=g`，顶浅底深）。含 `icon.svg` / `icon.png`（1254×1254 原始栅格源）/ `icon-text.svg`。
+- `projects/elysola/`：Elysola 单色图标（`currentColor`），含 geometry kit 生成的 `icon.svg` / `icon-decorative.svg`、派生的 `icon-text.svg`，以及 1254×1254 原始栅格 `icon.png`。旧脚本中的渐变常量从未生效，Elysola 图标没有渐变。
+- `projects/mailer/`：Mailer 图标，SVG 内定义蓝色线性渐变。
 - `projects/webhooker/`：WebHooker 图标，圆角矩形 + 白色 hook 符号（`#4f46e5`）。
+
+## 真值与资产注册
+
+- Elysola 普通版/装饰版：`geometry-kit/icon-geometry.json → projects/elysola/icon*.svg → output/elysola/*`。
+- Elysola 横排字标：当前生成的 `icon.svg → icon-text.svg → output/elysola/icon-text-*`。
+- Mailer/WebHooker：手写 `projects/<project>/icon.svg → output/<project>/icon-*`。
+- 新增或删除公开资产必须同步修改 `icons.json`；不要依赖目录遍历自动公开文件。
+- `sizeMode: square` 的 PNG 宽高相等；`sizeMode: by-width` 只固定宽度，高度按 viewBox 比例派生。
 
 ## 环境
 
-- Nix：`nix develop`（flake 提供 uv/cairo/librsvg/potrace/imagemagick），或 `direnv allow`。
-- Python 依赖：cairosvg（`uv sync` 生成 `.venv`）。
-- cairosvg 依赖 libcairo，运行前需 `export LD_LIBRARY_PATH=/nix/store/...cairo.../lib`；直接使用 `uv run main.py` 时 flake shellHook 已设置。
+- Nix：`nix develop`（flake 提供 uv/librsvg/fontconfig/DejaVu/Imagemagick 等），或 `direnv allow`。
+- shellHook 生成受控 `FONTCONFIG_FILE`，确保 `DejaVu Sans:bold` 精确命中 `DejaVuSans-Bold.ttf`，而不是系统别名字体。
+- Python 构建仅使用标准库；SVG 渲染统一调用 `rsvg-convert`，不允许重新引入 cairosvg。
 
 ## 常用命令
 
-- `uv run main_text.py`：重新生成 Elysola 字标 SVG 到 `projects/elysola/`。
-- `uv run main.py`：导出所有项目到 `output/`，并写入 `output/manifest.json`。
+以下构建命令均在 `nix develop` 内运行：
+
+- `python3 main.py`：生成所有派生 SVG，导出全部 PNG，并写入 `output/manifest.json`。
+- `python3 main.py --check`：重生成并确认提交的派生 SVG 未过期；仍会刷新 `output/`。
+- `python3 validate.py`：执行字体、派生源、透明度、PNG 尺寸与 manifest 的完整验收。
+- `ruff check main.py main_text.py validate.py geometry-kit/generate.py`：Python 静态检查。
+- `black --fast --check main.py validate.py geometry-kit/generate.py`：格式检查。
 - `bun run sync`（在 icon-showcase 仓库）：从本仓库拉取最新资产。
 
 ## 约定
 
 - 提交需 GPG 签名（`git commit -S`）。
-- 修改渐变/形状后须重新导出 `output/` 并推送，否则展示站同步到的仍是旧资产。
-- 渐变方向保持垂直单调（顶 `#C8E0FD` → 底 `#3069C9`），不要引入环形或对角线分段。
-- 新增项目：创建 `projects/<project>/icon.svg`，运行 `uv run main.py`。
+- 修改几何、SVG、字体或注册表后须重新生成 `output/` 并推送，否则展示站同步到的仍是旧资产。
+- 生成文件包括 `projects/elysola/icon.svg`、`icon-decorative.svg`、`icon-text.svg` 与全部 `output/`；不得手改。
+- 修改 Elysola 图形只能改 `geometry-kit/icon-geometry.json` 或生成器；修改后运行统一流水线。
+- 镂空必须保留真透明；禁止用背景色覆盖版作为默认产物。overlay 兼容版不得复制进 `output/`、不得写入 manifest。
+- SVG 禁止使用 `var(...)` 颜色；主题化图标使用 `currentColor`。
+- 字标字体必须由受控 fontconfig 解析为 `DejaVuSans-Bold.ttf`，不得依赖系统默认字体或 glob 猜路径。
+- 新增项目：创建 `projects/<project>/icon.svg`、登记 `icons.json`、补相应断言，再运行 `python3 main.py && python3 validate.py`。
+- 发布前至少运行 `python3 main.py --check`、`python3 validate.py`、Ruff、Black 和 `git diff --check`。

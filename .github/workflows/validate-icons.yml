@@ -1,0 +1,39 @@
+name: Validate icons
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Generate and validate assets
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v31
+
+      - name: Check generated SVGs and assets
+        run: nix develop --command python3 main.py --check
+
+      - name: Run icon validation
+        run: nix develop --command python3 validate.py
+
+      - name: Run Python lint
+        run: >-
+          nix develop --command ruff check
+          main.py main_text.py validate.py geometry-kit/generate.py
+
+      - name: Check Python formatting
+        run: >-
+          nix develop --command black --fast --check
+          main.py validate.py geometry-kit/generate.py
+
+      - name: Require reproducible generated output
+        run: git diff --exit-code -- projects/elysola output

@@ -1,56 +1,120 @@
 # Elysola Icon
 
-Elysola 多项目品牌图标的源文件与多尺寸导出聚合仓库。
+Elysola 多项目品牌图标的源文件、生成器与多尺寸导出仓库，也是 [`icon-showcase`](../icon-showcase) 的资产上游。展示站通过 GitHub raw 读取本仓库提交的 `output/` 和 `output/manifest.json`，因此本地重新生成后还需提交并推送，线上才会更新。
+
+## 真值与生成链
+
+本仓库按图标类型使用两种真值链：
+
+```text
+Elysola 普通版 / 装饰版
+geometry-kit/icon-geometry.json
+  → projects/elysola/icon*.svg
+  → output/elysola/*.png
+
+Elysola 横排字标
+当前生成的 projects/elysola/icon.svg
+  → projects/elysola/icon-text.svg
+  → output/elysola/icon-text-*.png
+
+Mailer / WebHooker
+projects/<project>/icon.svg
+  → output/<project>/icon-*.png
+```
+
+`geometry-kit/icon-geometry.json` 是 Elysola 普通版与装饰版的唯一几何真值。由它生成的 SVG、横排字标 SVG 和 `output/` 下的全部文件都是派生产物，不应手工修改。
 
 ## 目录结构
 
-```
-projects/<project>/     # 各项目图标源文件（SVG，可附原始位图）
-output/<project>/       # 生成的多尺寸 PNG + SVG 副本
-output/manifest.json    # 资产清单元数据
+```text
+geometry-kit/              # Elysola 几何 JSON、生成器与说明
+projects/<project>/        # 手写 SVG 或提交的派生 SVG
+icons.json                 # 资产注册表、尺寸模式与验证开关
+main.py                    # 统一生成与 rsvg 渲染入口
+validate.py                # 构建、透明度、字体及 manifest 验证
+output/<project>/          # 多尺寸 PNG 与 SVG 副本
+output/manifest.json       # 展示站消费的资产清单
+docs/                      # 统一方案与设计说明
 ```
 
-- `projects/elysola/`：Elysola 主品牌（`icon.svg` / `icon.png` / `icon-text.svg`）
-- `projects/webhooker/`：WebHooker（`icon.svg`）
-- `main.py`：遍历 `projects/`，将每个 `*.svg` 导出到 `output/<project>/` 并生成 `manifest.json`
-- `main_text.py`：生成 Elysola 横排字标 SVG（`projects/elysola/icon-text*.svg`）
-- `flake.nix` / `pyproject.toml`：Nix + uv 开发环境
+当前注册的 5 个资产：
 
-## 环境
+| 项目 | 资产 | 真值类型 | 尺寸模式 |
+| --- | --- | --- | --- |
+| Elysola | `icon` | geometry | 正方形 |
+| Elysola | `icon-decorative` | geometry | 正方形 |
+| Elysola | `icon-text` | 派生字标 | 按宽度、保持比例 |
+| Mailer | `icon` | 手写 SVG | 正方形 |
+| WebHooker | `icon` | 手写 SVG | 正方形 |
+
+## 开发环境
+
+推荐使用 Nix：
 
 ```bash
-nix develop        # 提供 uv / cairo / librsvg / potrace / imagemagick
+nix develop
 ```
 
-或直接使用已有的 `uv` 虚拟环境（含 `cairosvg`）。
+开发 shell 提供 Python、uv、librsvg（`rsvg-convert`）、fontconfig、DejaVu 字体、ImageMagick 和 potrace。shellHook 会创建受控 fontconfig 配置，确保：
 
-## 生成全部项目资产
+```text
+DejaVu Sans Bold → DejaVuSans-Bold.ttf
+```
+
+这样横排字标不会被系统字体别名错误替换。构建脚本只使用 Python 标准库；SVG 渲染统一使用 `rsvg-convert`，不依赖 CairoSVG。
+
+## 生成与验证
+
+在 `nix develop` 中运行：
 
 ```bash
-uv run main_text.py   # 先重新生成字标 SVG（仅 Elysola）
-uv run main.py        # 导出所有项目到 output/，并写入 manifest.json
+python3 main.py
+python3 validate.py
 ```
 
-`main.py` 对每个 `projects/<project>/*.svg` 输出 `output/<project>/<name>-{16,32,48,64,96,128,256,512}.png`，PNG 宽度为尺寸值、保持比例，同时复制一份 `<name>.svg`。
-
-## 重新生成 Elysola 主图标 SVG
-
-矢量轮廓由 `potrace` 从位图提取，再替换为蓝渐变填充：
+也可以检查提交的派生 SVG 是否已过期：
 
 ```bash
-magick projects/elysola/icon.png -alpha extract -threshold 30% -negate shape.pbm
-potrace shape.pbm -s --opaque --alphamax 1 --turdsize 2   # 得干净轮廓，替换 fill 为渐变
+python3 main.py --check
 ```
 
-## 带文字图标（图标 + 字标）
+统一流水线会：
 
-Elysola 横排 logo lockup，字标为 `Elysola`，文字使用 DejaVu Sans Bold，填充品牌蓝 `#1E63CE`。
+1. 从 geometry JSON 生成 Elysola 普通版与装饰版 SVG；
+2. 从当前普通版生成 `icon-text.svg`；
+3. 用 `rsvg-convert` 生成 16、32、48、64、96、128、256、512 宽度的 PNG；
+4. 保持 SVG 原始宽高比，非方形字标不会被拉伸成正方形；
+5. 复制公开 SVG，并重写 `output/manifest.json`。
 
-- `main_text.py`：用 `projects/elysola/icon.svg` 的轮廓配合 ImageMagick 生成
-- `projects/elysola/icon-text.svg`：矢量 lockup
-- `output/elysola/icon-text-{尺寸}.png`：由 `main.py` 导出
+`validate.py` 会检查：
 
-## 新增项目
+- DejaVu Sans Bold 精确字体匹配；
+- 派生 SVG 重生成一致性；
+- PNG 宽高、文件格式与画布透明度；
+- Elysola 普通版的破晓镂空是真透明；
+- SVG 不含不兼容的 `var(...)` 颜色；
+- manifest 与 `icons.json` 完全一致；
+- overlay 兼容版没有进入默认公开资产。
 
-1. 创建 `projects/<project>/icon.svg`
-2. 运行 `uv run main.py`
+## 图标约定
+
+- Elysola 是单色 `currentColor` 图标，没有垂直渐变；旧脚本中的渐变常量从未生效。
+- Mailer 自身包含蓝色线性渐变，以 SVG 内定义为准。
+- 镂空和负空间必须是真透明，不得用白色背景块冒充。
+- geometry kit 的 overlay 版只适用于不支持 mask 的受限场景，不进入 `output/` 和 manifest。
+- SVG 颜色不得使用 `var(...)`；需要主题色时使用 `currentColor`。
+- 修改几何、字体、SVG 或注册表后必须全量重生成并运行验证。
+
+## 新增项目或资产
+
+1. 将手写 SVG 放入 `projects/<project>/`，或为生成型资产增加对应真值与生成逻辑；
+2. 在 `icons.json` 登记项目、资产名、源路径、真值类型、尺寸模式和验证开关；
+3. 根据图形特征补充专属验证（镂空、圆角、渐变或字体）；
+4. 运行：
+
+```bash
+python3 main.py
+python3 validate.py
+```
+
+5. 一并提交源、生成物与 `output/manifest.json`。
