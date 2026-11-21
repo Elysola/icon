@@ -9,7 +9,7 @@ ROOT = Path(__file__).resolve().parent
 PROJECTS = ROOT / "projects"
 GEOMETRY_KIT = ROOT / "geometry-kit"
 GENERATED = (
-    PROJECTS / "elysola" / "icon.svg",
+    PROJECTS / "elysola" / "icon-mono.svg",
     PROJECTS / "elysola" / "icon-decorative.svg",
     PROJECTS / "elysola" / "icon-text.svg",
 )
@@ -43,7 +43,7 @@ def geometry(destination: Path) -> None:
             check=True,
         )
         generated = {
-            Path(temporary) / "elysola-standard.svg": destination / "icon.svg",
+            Path(temporary) / "elysola-standard.svg": destination / "icon-mono.svg",
             Path(temporary)
             / "elysola-decorative.svg": destination
             / "icon-decorative.svg",
@@ -99,7 +99,7 @@ def text_icon(destination: Path, env: dict[str, str]) -> None:
 <title>Elysola</title>
 <g fill="#000000">
 <svg x="{pad}" y="{icon_y:.2f}" width="{icon_size}" height="{icon_size}" viewBox="0 0 512 512">
-{icon_markup(destination / 'icon.svg')}
+{icon_markup(destination / 'icon-mono.svg')}
 </svg>
 <text x="{pad + icon_size + gap}" y="{text_y:.0f}" font-family="DejaVu Sans" font-weight="bold"
  font-size="{font_size}" dominant-baseline="central" fill="#000000">Elysola</text>
