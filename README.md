@@ -55,7 +55,7 @@ docs/                      # 统一方案与设计说明
 nix develop
 ```
 
-开发 shell 提供 Python、uv、librsvg（`rsvg-convert`）、fontconfig、DejaVu 字体、ImageMagick 和 potrace。shellHook 会创建受控 fontconfig 配置，确保：
+开发 shell 提供 Python、uv、Ruff、Black、librsvg（`rsvg-convert`）、fontconfig、DejaVu 字体、ImageMagick 和 potrace。shellHook 会创建受控 fontconfig 配置，确保：
 
 ```text
 DejaVu Sans Bold → DejaVuSans-Bold.ttf

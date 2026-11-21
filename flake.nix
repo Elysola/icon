@@ -18,6 +18,8 @@
         devShells.default = pkgs.mkShell {
           packages = [
             pkgs.uv
+            pkgs.ruff
+            pkgs.black
             pkgs.cairo
             pkgs.librsvg
             pkgs.fontconfig
