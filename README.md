@@ -30,8 +30,8 @@ projects/<project>/icon.svg
 geometry-kit/              # Elysola 几何 JSON、生成器与说明
 projects/<project>/        # 手写 SVG 或提交的派生 SVG
 icons.json                 # 资产注册表、尺寸模式与验证开关
-main.py                    # 统一生成与 rsvg 渲染入口
-validate.py                # 构建、透明度、字体及 manifest 验证
+generate.py                # Elysola 专属 SVG 生成器
+main.py / validate.py      # Vectorloom 兼容入口
 output/<project>/          # 多尺寸 PNG 与 SVG 副本
 output/manifest.json       # 展示站消费的资产清单
 docs/                      # 统一方案与设计说明
@@ -55,7 +55,7 @@ docs/                      # 统一方案与设计说明
 nix develop
 ```
 
-开发 shell 提供 Python、uv、Ruff、Black、librsvg（`rsvg-convert`）、fontconfig、DejaVu 字体、ImageMagick 和 potrace。shellHook 会创建受控 fontconfig 配置，确保：
+开发 shell 通过 [VectorLoom](https://github.com/Elysola/VectorLoom) 提供通用声明式构建与验证，并提供 Python、uv、Ruff、Black、librsvg（`rsvg-convert`）、fontconfig、DejaVu 字体、ImageMagick 和 potrace。shellHook 会创建受控 fontconfig 配置，确保：
 
 ```text
 DejaVu Sans Bold → DejaVuSans-Bold.ttf
@@ -68,17 +68,14 @@ DejaVu Sans Bold → DejaVuSans-Bold.ttf
 在 `nix develop` 中运行：
 
 ```bash
-python3 main.py
-python3 validate.py
+vectorloom build --config icons.json
+vectorloom check --config icons.json
+vectorloom validate --config icons.json
 ```
 
-也可以检查提交的派生 SVG 是否已过期：
+旧入口 `python3 main.py`、`python3 main.py --check` 和 `python3 validate.py` 仍保留兼容。
 
-```bash
-python3 main.py --check
-```
-
-统一流水线会：
+Vectorloom 读取 `icons.json`；`generate.py` 只保留 Elysola 专属几何与字标生成。统一流水线会：
 
 1. 从 geometry JSON 生成 Elysola 普通版与装饰版 SVG；
 2. 从当前普通版生成 `icon-text.svg`；
@@ -86,7 +83,7 @@ python3 main.py --check
 4. 保持 SVG 原始宽高比，非方形字标不会被拉伸成正方形；
 5. 复制公开 SVG，并重写 `output/manifest.json`。
 
-`validate.py` 会检查：
+Vectorloom 会检查：
 
 - DejaVu Sans Bold 精确字体匹配；
 - 派生 SVG 重生成一致性；

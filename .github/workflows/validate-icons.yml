@@ -19,21 +19,15 @@ jobs:
       - name: Install Nix
         uses: cachix/install-nix-action@v31
 
-      - name: Check generated SVGs and assets
-        run: nix develop --command python3 main.py --check
-
-      - name: Run icon validation
-        run: nix develop --command python3 validate.py
+      - name: Check reproducible generated output
+        run: nix develop --command vectorloom check --config icons.json
 
       - name: Run Python lint
         run: >-
           nix develop --command ruff check
-          main.py main_text.py validate.py geometry-kit/generate.py
+          main.py main_text.py generate.py validate.py geometry-kit/generate.py
 
       - name: Check Python formatting
         run: >-
           nix develop --command black --fast --check
-          main.py validate.py geometry-kit/generate.py
-
-      - name: Require reproducible generated output
-        run: git diff --exit-code -- projects/elysola output
+          main.py main_text.py generate.py validate.py geometry-kit/generate.py

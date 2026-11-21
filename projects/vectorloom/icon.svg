@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="VectorLoom">
+  <title>VectorLoom</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0E4F57"/>
+      <stop offset="1" stop-color="#082F36"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#g)"/>
+  <g stroke="#FFFFFF" stroke-width="2.5" opacity="0.28">
+    <path d="M20 13 V51"/><path d="M27.3 13 V51"/><path d="M36.7 13 V51"/><path d="M44 13 V51"/>
+  </g>
+  <path d="M18 16 L32 48 L46 16" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="14.5" y="12.5" width="7" height="7" fill="#FFB020"/>
+  <rect x="42.5" y="12.5" width="7" height="7" fill="#FFB020"/>
+  <circle cx="32" cy="48" r="4" fill="#FFB020"/>
+</svg>

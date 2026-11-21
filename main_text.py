@@ -1,6 +1,6 @@
-"""Compatibility entry point for the unified icon build pipeline."""
+"""Compatibility entry point for project-specific SVG generation."""
 
-import main
+import generate
 
 if __name__ == "__main__":
-    main.main()
+    generate.main()

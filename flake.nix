@@ -4,9 +4,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    vectorloom.url = "github:Elysola/VectorLoom";
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, vectorloom }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
@@ -18,6 +19,7 @@
         devShells.default = pkgs.mkShell {
           packages = [
             pkgs.uv
+            vectorloom.packages.${system}.default
             pkgs.ruff
             pkgs.black
             pkgs.cairo

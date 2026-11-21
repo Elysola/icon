@@ -1,47 +1,108 @@
 {
+  "$schema": "../vectorloom/schema/vectorloom.schema.json",
   "sizes": [16, 32, 48, 64, 96, 128, 256, 512],
+  "output": "output",
+  "renderer": "rsvg-convert",
+  "fontconfigEnv": "ELY_FONTCONFIG_FILE",
+  "forbiddenSvgText": ["var("],
+  "fonts": [
+    {"pattern": "DejaVu Sans:style=Bold", "file": "DejaVuSans-Bold.ttf"}
+  ],
+  "generators": [
+    {
+      "command": ["python3", "generate.py"],
+      "checkCommand": ["python3", "generate.py", "--check"]
+    }
+  ],
   "assets": [
     {
       "project": "elysola",
       "name": "icon",
       "source": "projects/elysola/icon.svg",
-      "truth": "geometry",
       "sizeMode": "square",
-      "checkCorners": true,
-      "checkCutout": true
+      "checks": {
+        "width": 512,
+        "transparentCorners": true,
+        "alphaSamples": [{"x": 192, "y": 250, "value": 0}],
+        "alphaSegments": [{
+          "axis": "y", "position": 192, "start": 230, "end": 269,
+          "threshold": 128, "segments": [[234, 246], [255, 264]], "tolerance": 1
+        }]
+      }
     },
     {
-      "project": "elysola",
-      "name": "icon-decorative",
-      "source": "projects/elysola/icon-decorative.svg",
-      "truth": "geometry",
-      "sizeMode": "square",
-      "checkCorners": true
+      "project": "elysola", "name": "icon-decorative",
+      "source": "projects/elysola/icon-decorative.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
     },
     {
-      "project": "elysola",
-      "name": "icon-text",
-      "source": "projects/elysola/icon-text.svg",
-      "truth": "derived-text",
-      "sizeMode": "by-width",
-      "checkCorners": true,
-      "font": "DejaVuSans-Bold.ttf"
+      "project": "elysola", "name": "icon-text",
+      "source": "projects/elysola/icon-text.svg", "sizeMode": "by-width",
+      "checks": {"width": 512, "transparentCorners": true}
     },
     {
-      "project": "mailer",
-      "name": "icon",
+      "project": "mailer", "name": "icon",
       "source": "projects/mailer/icon.svg",
-      "truth": "svg",
-      "sizeMode": "square",
-      "checkCorners": true
+      "sources": [{"source": "projects/mailer/icon-small.svg", "maxWidth": 32}],
+      "sizeMode": "square", "checks": {"width": 512, "transparentCorners": true}
     },
     {
-      "project": "webhooker",
-      "name": "icon",
+      "project": "mailer", "name": "icon-small",
+      "source": "projects/mailer/icon-small.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "mailer", "name": "icon-mono",
+      "source": "projects/mailer/icon-mono.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "sleepyxposed", "name": "icon",
+      "source": "projects/sleepyxposed/icon.svg",
+      "sources": [{"source": "projects/sleepyxposed/icon-small.svg", "maxWidth": 32}],
+      "sizeMode": "square", "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "sleepyxposed", "name": "icon-small",
+      "source": "projects/sleepyxposed/icon-small.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "sleepyxposed", "name": "icon-mono",
+      "source": "projects/sleepyxposed/icon-mono.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "vectorloom", "name": "icon",
+      "source": "projects/vectorloom/icon.svg",
+      "sources": [{"source": "projects/vectorloom/icon-small.svg", "maxWidth": 32}],
+      "sizeMode": "square", "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "vectorloom", "name": "icon-small",
+      "source": "projects/vectorloom/icon-small.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "vectorloom", "name": "icon-mono",
+      "source": "projects/vectorloom/icon-mono.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "webhooker", "name": "icon",
       "source": "projects/webhooker/icon.svg",
-      "truth": "svg",
-      "sizeMode": "square",
-      "checkCorners": true
+      "sources": [{"source": "projects/webhooker/icon-small.svg", "maxWidth": 32}],
+      "sizeMode": "square", "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "webhooker", "name": "icon-small",
+      "source": "projects/webhooker/icon-small.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
+    },
+    {
+      "project": "webhooker", "name": "icon-mono",
+      "source": "projects/webhooker/icon-mono.svg", "sizeMode": "square",
+      "checks": {"width": 512, "transparentCorners": true}
     }
   ]
 }
