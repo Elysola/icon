@@ -7,19 +7,23 @@ Elysola 多项目品牌图标的源文件、生成器与多尺寸导出仓库，
 本仓库按图标类型使用两种真值链：
 
 ```text
-Elysola 普通版 / 装饰版
+Elysola 单色版 / 装饰版
 geometry-kit/icon-geometry.json
-  → projects/elysola/icon*.svg
+  → projects/elysola/icon-mono.svg、icon-decorative.svg
   → output/elysola/*.png
 
 Elysola 横排字标
-当前生成的 projects/elysola/icon.svg
+projects/elysola/icon-mono.svg
   → projects/elysola/icon-text.svg
   → output/elysola/icon-text-*.png
 
-Mailer / WebHooker
-projects/<project>/icon.svg
-  → output/<project>/icon-*.png
+Elysola 彩色主版 / 小尺寸版（手写）
+projects/elysola/icon.svg、icon-small.svg
+  → output/elysola/icon-*.png
+
+Mailer / SleepyXposed / VectorLoom / WebHooker（手写）
+projects/<project>/icon.svg、icon-small.svg、icon-mono.svg
+  → output/<project>/*.png
 ```
 
 `geometry-kit/icon-geometry.json` 是 Elysola 普通版与装饰版的唯一几何真值。由它生成的 SVG、横排字标 SVG 和 `output/` 下的全部文件都是派生产物，不应手工修改。
@@ -37,15 +41,14 @@ output/manifest.json       # 展示站消费的资产清单
 docs/                      # 统一方案与设计说明
 ```
 
-当前注册的 5 个资产：
+当前注册的资产（每个项目都有彩色主版、小尺寸版和单色版；Elysola 另有装饰版与横排字标）：
 
 | 项目 | 资产 | 真值类型 | 尺寸模式 |
 | --- | --- | --- | --- |
-| Elysola | `icon` | geometry | 正方形 |
+| Elysola | `icon`、`icon-small`、`icon-mono` | 手写彩色主版 + 小尺寸版；单色版由 geometry kit 生成 | 正方形 |
 | Elysola | `icon-decorative` | geometry | 正方形 |
 | Elysola | `icon-text` | 派生字标 | 按宽度、保持比例 |
-| Mailer | `icon` | 手写 SVG | 正方形 |
-| WebHooker | `icon` | 手写 SVG | 正方形 |
+| Mailer / SleepyXposed / VectorLoom / WebHooker | `icon`、`icon-small`、`icon-mono` | 手写 SVG | 正方形 |
 
 ## 开发环境
 
@@ -95,8 +98,9 @@ Vectorloom 会检查：
 
 ## 图标约定
 
-- Elysola 是单色 `currentColor` 图标，没有垂直渐变；旧脚本中的渐变常量从未生效。
-- Mailer 自身包含蓝色线性渐变，以 SVG 内定义为准。
+- Elysola 的彩色主版与小尺寸版是手写 SVG：满版蓝色圆角底板 + 白色标志，小尺寸版做了光学校正；单色版与装饰版才来自 geometry kit。
+- 五个项目的 `icon-mono.svg` 都是透明背景 + `currentColor`，不得内嵌固定 `color` 值，否则宿主主题化失效。
+- 所有项目的彩色主版都是满版圆角底板 + 浅色标志 + 品牌强调色，与对应的小尺寸版结构一致，避免 32px 尺寸切换时图形突变。
 - 镂空和负空间必须是真透明，不得用白色背景块冒充。
 - geometry kit 的 overlay 版只适用于不支持 mask 的受限场景，不进入 `output/` 和 manifest。
 - SVG 颜色不得使用 `var(...)`；需要主题色时使用 `currentColor`。

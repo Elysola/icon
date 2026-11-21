@@ -1,15 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Mailer">
   <title>Mailer</title>
   <defs>
-    <linearGradient id="g" x1="0" y1="17" x2="0" y2="48" gradientUnits="userSpaceOnUse">
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#6EA8FE"/>
       <stop offset="1" stop-color="#2F66C4"/>
     </linearGradient>
   </defs>
-  <rect x="9" y="17" width="46" height="31" rx="5" fill="url(#g)"/>
-  <path d="M13.5 22.5 L32 35.5 L50.5 22.5" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <g fill="none" stroke="#FFB020" stroke-width="3.2" stroke-linecap="round">
-    <path d="M50 12.5 A5.5 5.5 0 0 1 55.5 18"/>
-    <path d="M50 8 A10 10 0 0 1 60 18"/>
+  <rect width="64" height="64" rx="14" fill="url(#g)"/>
+  <rect x="8" y="26" width="38" height="26" rx="4" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+  <path d="M12 30 L27 41.5 L42 30" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="none" stroke="#FFB020" stroke-width="3.4" stroke-linecap="round">
+    <path d="M48 16.5 A6 6 0 0 1 54 22.5"/>
+    <path d="M48 11.5 A11 11 0 0 1 59 22.5"/>
   </g>
 </svg>

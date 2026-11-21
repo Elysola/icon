@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Mailer">
   <title>Mailer</title>
-  <rect x="6" y="14" width="52" height="36" rx="6" fill="#2F66C4"/>
-  <path d="M11 20.5 L32 37 L53 20.5" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect width="64" height="64" rx="14" fill="#4E82DF"/>
+  <rect x="12" y="24" width="40" height="27" rx="4.5" fill="none" stroke="#FFFFFF" stroke-width="5.5"/>
+  <path d="M17 29 L32 41 L47 29" fill="none" stroke="#FFFFFF" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

@@ -15,15 +15,16 @@
 
 ## 已有项目
 
-- `projects/elysola/`：Elysola 单色图标（`currentColor`），含 geometry kit 生成的 `icon.svg` / `icon-decorative.svg`、派生的 `icon-text.svg`，以及 1254×1254 原始栅格 `icon.png`。旧脚本中的渐变常量从未生效，Elysola 图标没有渐变。
-- `projects/mailer/`：Mailer 图标，SVG 内定义蓝色线性渐变。
-- `projects/webhooker/`：WebHooker 图标，圆角矩形 + 白色 hook 符号（`#4f46e5`）。
+- `projects/elysola/`：Elysola 图标三件套 + 装饰版/字标。手写的彩色主版 `icon.svg`（蓝色渐变圆角底板 + 白色 ES）与小尺寸版 `icon-small.svg`（≤32px 光学校正）；由 geometry kit 生成的单色版 `icon-mono.svg`（透明 + `currentColor`）、装饰版 `icon-decorative.svg`，以及派生字标 `icon-text.svg`；另含 1254×1254 原始栅格 `icon.png`。
+- `projects/mailer/`、`projects/webhooker/`、`projects/sleepyxposed/`、`projects/vectorloom/`：各自手写的彩色主版（满版圆角底板 + 浅色标志 + 品牌强调色）、光学校正的小尺寸版，以及透明 `currentColor` 单色版。
+- 五个项目的 `icon-mono.svg` 不得写入固定 `color`/`fill` 颜色值，否则宿主通过 `color` 主题化会失效。
 
 ## 真值与资产注册
 
 - Elysola 普通版/装饰版：`geometry-kit/icon-geometry.json → projects/elysola/icon*.svg → output/elysola/*`。
-- Elysola 横排字标：当前生成的 `icon.svg → icon-text.svg → output/elysola/icon-text-*`。
-- Mailer/WebHooker：手写 `projects/<project>/icon.svg → output/<project>/icon-*`。
+- Elysola 彩色主版/小尺寸版：手写 `projects/elysola/icon.svg`、`icon-small.svg`。
+- Elysola 横排字标：当前生成的 `icon-mono.svg → icon-text.svg → output/elysola/icon-text-*`（字标不嵌彩色底板）。
+- Mailer/SleepyXposed/VectorLoom/WebHooker：手写 `projects/<project>/icon.svg`、`icon-small.svg`、`icon-mono.svg → output/<project>/*`。
 - 新增或删除公开资产必须同步修改 `icons.json`；不要依赖目录遍历自动公开文件。
 - `sizeMode: square` 的 PNG 宽高相等；`sizeMode: by-width` 只固定宽度，高度按 viewBox 比例派生。
 
